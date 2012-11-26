@@ -7,12 +7,13 @@
 1.将所有的文件复制到dic/qmfood下
 2.修改yaya.txt，在最后加上下面的代码：
 >//=-***QMFood辞书***-=
->dic, dic/qmfood/config.dic
->dic, dic/qmfood/lang.dic
->dic, dic/qmfood/debug.dic
->dic, dic/qmfood/status.dic
->dic, dic/qmfood/general.dic
->dic, dic/qmfood/use.dic
+dic, dic/qmfood/config.dic
+dic, dic/qmfood/lang.dic
+dic, dic/qmfood/debug.dic
+dic, dic/qmfood/status.dic
+dic, dic/qmfood/general.dic
+dic, dic/qmfood/use.dic
+
 3.在菜单中加入\q[喂食,OnQMFMenu]
 4.开始使用吧=w=
 
