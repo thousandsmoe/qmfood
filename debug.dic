@@ -1,0 +1,77 @@
+//=================================================
+//			青石千梦的伪春菜通用食物系统
+//	请从官方配布点获得本系统，并请阅读使用规约。
+//	作者主页：http://thousandmoe.github.com/
+//	项目主页：http://thousandmoe.github.com/qmfood/
+//=================================================
+
+//*************************************************
+//						调试
+//*************************************************
+//	这些函数作为开发时debug用，正式使用时不加上它们也没有
+//	关系。
+//*************************************************
+OnTMFDebug{
+	"食物系统的调试菜单。\n"
+	--
+	"饥饿值状态：" + HungryOrNot(1)+"（"+[hungryvar]+"）\n"
+	_i = 0
+	_returnvar = ""
+	foreach [foodname] ; _food {
+		if ![foodlike][_i] {
+			[foodlike][_i] = 0
+		}
+		_returnvar=_returnvar+"\_q\![*]\q["+_i+"-" + _food + "：" +LikeOrNot(_i,1) + "（原始："+ [foodlike][_i] + " 修正："+QMLikelyT(_i)+"）,OnTMFDebugTake,1,"+_i+"]\n"
+		_i++
+	}
+	--
+	_returnvar
+	--
+	"\_q\![*]\q[加减饥饿值,OnTMFDebugTake,2]\n"
+	--
+	"\_q\![*]\q[喂食,OnQMFMenu]\e"
+}
+OnTMFDebugTake{
+	if reference0 == 1{
+		"要操作的食物是："+[foodname][reference1]+"（"+reference1+"）\n"
+		--
+		"\_q\![*]\q[喜好度-1,OnTMFDebugTake,10,"+reference1+",-1]\n"
+		--
+		"\_q\![*]\q[喜好度-10,OnTMFDebugTake,10,"+reference1+",-10]\n"
+		--
+		"\_q\![*]\q[喜好度+1,OnTMFDebugTake,10,"+reference1+",-1]\n"
+		--
+		"\_q\![*]\q[喜好度+10,OnTMFDebugTake,10,"+reference1+",+10]\n"
+		--
+		"\_q\![*]\q[喜好度清空,OnTMFDebugTake,100,"+reference1+"]\n"
+	}
+	if reference0 == 10{
+		"要操作的食物是："+[foodname][reference1]+"（"+reference1+"），操作是好感"+reference2+"\n"+	QMModLK(reference1,reference2)
+		--
+		"现在"+[foodname][reference1]+"的好感度是："+[foodlike][reference1]+"（"+LikeOrNot(reference1,1)+"）"
+	}
+	if reference0 == 100{
+		"要操作的食物是："+[foodname][reference1]+"（"+reference1+"），操作是好感清空。\n"
+		[foodlike][reference1]=0
+		--
+		"现在"+[foodname][reference1]+"的好感度是："+[foodlike][reference1]+"（"+LikeOrNot(reference1,1)+"）"
+	}
+	if reference0 == 2{
+		"\_q\![*]\q[饥饿值-1,OnTMFDebugTake,20,-1]\n"
+		--
+		"\_q\![*]\q[饥饿值-10,OnTMFDebugTake,20,-10]\n"
+		--
+		"\_q\![*]\q[饥饿值+1,OnTMFDebugTake,20,-1]\n"
+		--
+		"\_q\![*]\q[饥饿值+10,OnTMFDebugTake,20,+10]\n"
+		--
+		"\_q\![*]\q[饥饿值清空,OnTMFDebugTake,200]\n"
+	}
+	if reference0 == 20{
+		"%(QMModHG(reference1))现在饥饿值："+[hungryvar]
+	}
+	if reference0 == 200{
+		[hungryvar]=0
+		"现在饥饿值："+[hungryvar]
+	}
+}

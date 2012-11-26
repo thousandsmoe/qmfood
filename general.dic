@@ -1,0 +1,56 @@
+//=================================================
+//			青石千梦的伪春菜通用食物系统
+//	请从官方配布点获得本系统，并请阅读使用规约。
+//	作者主页：http://thousandmoe.github.com/
+//	项目主页：http://thousandmoe.github.com/qmfood/
+//=================================================
+
+//*************************************************
+//					通用操作函数
+//*************************************************
+//	基本的操作函数。修改饥饿值，喜好度。不直接被主流程调用
+//	的函数。
+//*************************************************
+
+//增减饥饿值
+QMModHG : void{
+	[hungryvar]+=_argv[0]
+}
+
+//增减喜好度
+//参数0.食物ID
+//参数1.数目
+QMModLK : void{
+	[foodlike][_argv[0]]+=_argv[1]
+}
+
+//随机喜好
+//0-不喜欢 2-喜欢
+QMRandLK{
+	_rnd = RAND
+	_vunlike = [likernd][0]
+	_vlike = 100-[likernd][0]
+	if _rnd < _vlike{
+		"2"
+	}
+	else{
+		"0"
+	}
+}
+
+QMFoodName{
+	[foodname][_argv[0]]
+}
+//吃
+//参数0-食物ID
+OnQMEat{
+	if HungryOrNot == 0{
+		QMReactFull
+	} 
+	_react = LikeOrNot(reference0)
+	if _react == 1 {
+		_react = QMRandLK
+	}
+	//到这里_react就只有0和2两个值了。
+	EVAL("QMReactLike"+_react+"("+reference0+")")
+}

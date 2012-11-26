@@ -1,0 +1,93 @@
+//=================================================
+//			青石千梦的伪春菜通用食物系统
+//	请从官方配布点获得本系统，并请阅读使用规约。
+//	作者主页：http://thousandmoe.github.com/
+//	项目主页：http://thousandmoe.github.com/qmfood/
+//=================================================
+
+//*************************************************
+//						状态判定
+//*************************************************
+//	这里是QMFood的所有的状态判定函数。
+//*************************************************
+//喂食状态判定
+//1.饥饿值
+//参数0：返回中文
+//返回：0=饱 1=一般 2=饿
+HungryOrNot{
+	if [hungryvar]<[hungry][0]{
+		if _argv[0]{
+			"饱"
+		}
+		else{
+			"0"
+		}
+	}
+	elseif [hungryvar]>[hungry][2]{
+		if _argv[0]{
+			"饿"
+		}
+		else{
+			"2"
+		}
+	}
+	else{
+		if _argv[0]{
+			"一般"
+		}
+		else{
+			"1"
+		}
+	}
+}
+//2.喜好度
+//参数0：食物ID
+//参数1：返回中文
+//返回：0-不喜欢 1-一般 2-很喜欢
+LikeOrNot{
+	_foodlike = QMLikelyT(_argv[0])
+	
+	if _foodlike>[likely][2]
+	{
+		if _argv[1]{
+			"很喜欢"
+		}
+		else{
+			"2"
+		}
+	}
+	elseif _foodlike<[likely][0]
+	{
+		if _argv[1]{
+			"不喜欢"
+		}
+		else{
+			"0"
+		}
+	}
+	else
+	{
+		if _argv[1]{
+			"一般"
+		}
+		else{
+			"1"
+		}
+	}
+}
+
+//3.喜好度修正值查询
+QMLikelyT{
+	_foodlike=[foodlike][_argv[0]]
+	//好感修正
+	if HungryOrNot == 0{
+		_foodlike+=[hungryvar]*[hulike][0]
+	}
+	elseif HungryOrNot == 2{
+		_foodlike+=[hungryvar]*[hulike][2]
+	}
+	else{
+		_foodlike+=[hungryvar]*[hulike][1]
+	}
+	_foodlike
+}
