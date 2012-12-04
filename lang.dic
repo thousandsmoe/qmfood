@@ -16,16 +16,22 @@
 //QMModLK(_argv[0],x)：把x替换为数字，可以实现对该食物的喜好度加减
 //QMModHG(x)：把x替换为数字，可以实现饥饿值的加减
 
+
 //讨厌反应
 QMReactLike0{
-	"\0\s[1]这，这是什么！太难吃了吧！\e:eval=QMModLK(_argv[0],-1)+QMModHG(5)"
-	"\0\s[1]这个味道……难道%(username)要毒死我？\e:eval=QMModLK(_argv[0],-1)+QMModHG(5)"
+	//指定食物反应写法
+	if QMFoodName(_argv[0])=='巧克力'{
+		"\0\s[1]巧克力无爱！无爱！无爱！！\e:eval=QMModLK(_argv[0],-1)+QMModHG(+5)"
+		return	//不要忘记返回
+	}
+	"\0\s[1]这，这是什么！太难吃了吧！\e:eval=QMModLK(_argv[0],-1)+QMModHG(+5)"
+	"\0\s[1]这个味道……难道%(username)要毒死我？\e:eval=QMModLK(_argv[0],-1)+QMModHG(+5)"
 }
 
 //喜爱反应
 QMReactLike2{
-	"\0\s[1]美妙极了~\e:eval=QMModLK(_argv[0],1)+QMModHG(-5)"
-	"\0\s[1]%(QMFoodName(_argv[0]))果然是大爱啊~\e:eval=QMModLK(_argv[0],1)+QMModHG(-5)"
+	"\0\s[1]美妙极了~\e:eval=QMModLK(_argv[0],+1)+QMModHG(-5)"
+	"\0\s[1]%(QMFoodName(_argv[0]))果然是大爱啊~\e:eval=QMModLK(_argv[0],+1)+QMModHG(-5)"
 }
 
 //饱了
