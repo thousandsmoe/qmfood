@@ -47,8 +47,7 @@ HungryOrNot{
 LikeOrNot{
 	_foodlike = QMLikelyT(_argv[0])
 	
-	if _foodlike>[likely][2]
-	{
+	if _foodlike>[likely][2]{
 		if _argv[1]{
 			"很喜欢"
 		}
@@ -56,8 +55,7 @@ LikeOrNot{
 			"2"
 		}
 	}
-	elseif _foodlike<[likely][0]
-	{
+	elseif _foodlike<[likely][0]{
 		if _argv[1]{
 			"不喜欢"
 		}
@@ -65,8 +63,7 @@ LikeOrNot{
 			"0"
 		}
 	}
-	else
-	{
+	else{
 		if _argv[1]{
 			"一般"
 		}
