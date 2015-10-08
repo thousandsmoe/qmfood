@@ -3,9 +3,9 @@
 
 ---
 
-作者主页：[http://thousandmoe.github.com/](http://thousandmoe.github.com/)  
-配布地址：[http://thousandmoe.github.com/qmfood](http://thousandmoe.github.com/qmfood)  
-反馈地址：[http://ainou.liaoliaolan.eu.org/ainou/9/3.1](http://ainou.liaoliaolan.eu.org/ainou/9/3.1)  
+作者主页：<http://thousandmoe.github.com/>  
+配布地址：<http://thousandmoe.github.com/qmfood>  
+反馈地址：<https://github.com/thousandsmoe/qmfood/issues>  
 
 ---
 
@@ -27,14 +27,14 @@
 ### 安装方法 ###
 1. 将所有的文件复制到dic/qmfood下
 2. 修改yaya.txt，在最后加上下面的代码：  
-`//↓从下面这行开始复制  
-dic, dic/qmfood/config.dic  
-dic, dic/qmfood/lang.dic  
-dic, dic/qmfood/debug.dic  
-dic, dic/qmfood/status.dic  
-dic, dic/qmfood/general.dic  
-dic, dic/qmfood/use.dic  
-//↑复制到上面这行`
+    //↓从下面这行开始复制  
+    dic, dic/qmfood/config.dic  
+    dic, dic/qmfood/lang.dic  
+    dic, dic/qmfood/debug.dic  
+    dic, dic/qmfood/status.dic  
+    dic, dic/qmfood/general.dic  
+    dic, dic/qmfood/use.dic  
+    //↑复制到上面这行
 3. 在菜单中加入`\q[喂食,OnQMFMenu]`
 4. 开始使用吧=w=
 
